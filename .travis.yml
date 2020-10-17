@@ -9,10 +9,6 @@ language: node_js
 addons:
   ssh_known_hosts: 134.122.64.238
 
-script: echo $KEY > ~/.ssh/id_rsa
-
-deploy:
-  - provider: script
-  script: bash deploy.sh
-  on:
-    branch: main
+script:
+  - echo $KEY > ~/.ssh/id_rsa
+  - if [[ $TRAVIS_BRANCH == 'main' ]]; then bash deploy.sh; fi
