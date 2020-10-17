@@ -1,0 +1,18 @@
+notifications:
+  slack: dat3-fall-2020:FD0Eo9xmcFuxzFmTAnpZco3x
+  email: false
+
+dist: focal
+
+language: node_js
+
+addons:
+  ssh_known_hosts: 134.122.64.238
+
+script: echo $KEY > ~/.ssh/id_rsa
+
+deploy:
+  - provider: script
+  script: bash deploy.sh
+  on:
+    branch: main
