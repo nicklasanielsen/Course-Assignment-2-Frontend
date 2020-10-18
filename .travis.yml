@@ -25,4 +25,5 @@ deploy:
   provider: script
   skip-cleanup: true
   script: bash ./deploy.sh
-  branch: main
+  on:
+    branch: main
