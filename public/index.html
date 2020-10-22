@@ -21,16 +21,52 @@
       <table class="table">
         <thead>
           <tr>
-            <td>Fullname</td>
+            <td>Fuldnavn</td>
             <td>Email</td>
-            <td>Address</td>
-            <td>City</td>
-            <td>Phone(s)</td>
-            <td>Hobbies</td>
+            <td>Adresse</td>
+            <td>by</td>
+            <td>Telefon(er)</td>
+            <td>Hobby(er)</td>
           </tr>
         </thead>
         <tbody id="tableBody"></tbody>
       </table>
+    </div>
+    <div class="col-lg-2"></div>
+  </div>
+
+  <div class="row">
+    <div class="col-lg-2"></div>
+    <div class="col-lg-8">
+    <form id="phoneForm">
+      <label for="phoneField">Søg efter person med telefonnummer</label>
+      <input type="number" name="phonenumber" id="phoneField">
+      <input type="submit" value="Søg" id="phoneSubmit">
+    </form>
+    </div>
+    <div class="col-lg-2"></div>
+  </div>
+
+  <div class="row">
+    <div class="col-lg-2"></div>
+    <div class="col-lg-8">
+    <form id="hobbyForm">
+      <label for="hobbyField">Søg efter personer med hobby</label>
+      <input type="text" name="hobby" id="hobbyField">
+      <input type="submit" value="Søg" id="hobbySubmit">
+    </form>
+    </div>
+    <div class="col-lg-2"></div>
+  </div>
+  
+  <div class="row">
+    <div class="col-lg-2"></div>
+    <div class="col-lg-8">
+    <form id="cityForm">
+      <label for="cityField">Søg efter personer i by</label>
+      <input type="text" name="city" id="cityField">
+      <input type="submit" value="Søg" id="citySubmit">
+    </form>
     </div>
     <div class="col-lg-2"></div>
   </div>
@@ -96,6 +132,30 @@
       </div>
       <div class="col-lg-2"></div>
     </div>
+  </div>
+
+  <div class="row">
+    <div class="col-lg-2"></div>
+    <div class="col-lg-8">
+      <table class="table">
+        <thead>
+          <tr>
+            <td>Postnummer</td>
+            <td>Bynavn</td>
+          </tr>
+        </thead>
+        <tbody id="tableBody2"></tbody>
+      </table>
+    </div>
+    <div class="col-lg-2"></div>
+  </div>
+
+  <div class="row">
+    <div class="col-lg-2"></div>
+    <div class="col-lg-8">
+      <button type="button" class="btn btn-primary" id="postNumberButton">Få alle postnumre </button>
+    </div>
+    <div class="col-lg-2"></div>
   </div>
   
 </body>
