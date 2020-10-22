@@ -21,10 +21,10 @@
       <table class="table">
         <thead>
           <tr>
-            <td>Fuldnavn</td>
+            <td>Fulde navn</td>
             <td>Email</td>
             <td>Adresse</td>
-            <td>by</td>
+            <td>By</td>
             <td>Telefon(er)</td>
             <td>Hobby(er)</td>
           </tr>
@@ -77,8 +77,9 @@
       <div class="col-lg-8">
         <!-- Button trigger modal -->
         <button type="button" id="addPerson" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
-          Add person
+          Tilføj person
         </button>
+        <div id="error" class="alert alert-danger" role="alert" style="width: 50%;margin-top:10px;"></div>
 
         <!-- Modal -->
         <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
@@ -86,11 +87,11 @@
           <div class="modal-dialog" role="document">
             <div class="modal-content">
               <div class="modal-header">
-                <h5 class="modal-title" id="myModalLabel">Add person</h5>
+                <h5 class="modal-title" id="myModalLabel">Tilføj person</h5>
               </div>
               <div class="modal-body">
                 <div class="form-group">
-                  <label for="fullName">Fullname</label>
+                  <label for="fullName">Fulde navn</label>
                   <input type="text" class="form-control" id="fullName" placeholder="Lars Larsen">
                 </div>
                 <div class="form-group">
@@ -98,33 +99,33 @@
                   <input type="text" class="form-control" id="email" placeholder="example@email.com">
                 </div>
                 <div class="form-group">
-                  <label for="address">Address</label>
+                  <label for="address">Adresse</label>
                   <input type="text" class="form-control" id="address" placeholder="VejNavn 123 evt. etage">
                 </div>
                 <div class="form-group">
-                  <label for="city">Zip and city</label>
+                  <label for="city">Postnummer og by</label>
                   <input type="text" class="form-control" id="city" placeholder="2800 Kongens Lyngby">
                 </div>
                 <div class="form-group">
-                  <label for="phone">Phone</label>
+                  <label for="phone">Telefon</label>
                   <input type="text" class="form-control" id="phone" placeholder="70241207">
                 </div>
                 <div class="form-group">
-                  <label for="phoneType">Phone Type</label>
+                  <label for="phoneType">Telefontype</label>
                   <input type="text" class="form-control" id="phoneType" placeholder="privat eller arbejde">
                 </div>
                 <div class="form-group">
-                  <label for="hobbyName">Hobby Name</label>
+                  <label for="hobbyName">Hobbynavn</label>
                   <input type="text" class="form-control" id="hobbyName" placeholder="Navn på hobby">
                 </div>
                 <div class="form-group">
-                  <label for="hobbyDesc">Hobby Description</label>
+                  <label for="hobbyDesc">Hobbybeskrivelse</label>
                   <input type="text" class="form-control" id="hobbyDesc" placeholder="Beskrivelse af hobby">
                 </div>
               </div>
               <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" id="savebtn" class="btn btn-primary">Save changes</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Luk</button>
+                <button type="button" id="savebtn" class="btn btn-primary">Gem ændringer</button>
               </div>
             </div>
           </div>
