@@ -42,14 +42,14 @@ document.getElementById("savebtn").addEventListener("click", function () {
         },
         "phones": [
             {
-                "phone": document.getElementById("phone").value,
-                "phoneType": document.getElementById("phoneType").value
+                "number": document.getElementById("phone").value,
+                "type": document.getElementById("phoneType").value
             }
         ],
         "hobbies": [
             {
-                "hobbyName": document.getElementById("hobbyName"),
-                "hobbyDescription": document.getElementById("hobbyDesc")
+                "hobbyName": document.getElementById("hobbyName").value,
+                "hobbyDescription": document.getElementById("hobbyDesc").value
             }
         ]
     }
