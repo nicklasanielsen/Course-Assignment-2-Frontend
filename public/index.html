@@ -71,6 +71,31 @@
     <div class="col-lg-2"></div>
   </div>
 
+  <div class="row">
+    <div class="col-lg-2"></div>
+    <div class="col-lg-8">
+      <form id="hobbyPersonsForm">
+        <label for="hobbyPersonField">Vis antal med Hobby: </label>
+        <input type="text" id="hobbyPersonField">
+        <input type="submit" id="hobbyPersonSubmit" value="Søg">
+      </form>
+      <div id="hobbyPersonResult" style="display: none;">Hej med Dig</div>
+    </div>
+    <div class="col-lg-2"></div>
+  </div>
+
+  <div class="row">
+    <div class="col-lg-2"></div>
+    <div class="col-lg-8">
+    <form id="deleteForm">
+      <label for="deleteField">Slet person ud fra ID</label>
+      <input type="text" name="city" id="deleteField">
+      <input type="submit" value="Slet" id="deleteSubmit">
+    </form>
+    </div>
+    <div class="col-lg-2"></div>
+  </div>
+
   <div>
     <div class="row">
       <div class="col-lg-2"></div>
@@ -79,7 +104,6 @@
         <button type="button" id="addPerson" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
           Tilføj person
         </button>
-        <div id="error" class="alert alert-danger" role="alert" style="width: 50%;margin-top:10px;"></div>
 
         <!-- Modal -->
         <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
@@ -130,6 +154,74 @@
             </div>
           </div>
         </div>
+      </div>
+      <div class="col-lg-2"></div>
+    </div>
+  </div>
+
+  <div>
+    <div class="row">
+      <div class="col-lg-2"></div>
+      <div class="col-lg-8">
+        <!-- Button trigger modal -->
+        <form id="editForm">
+          <label for="idField">ID: </label>
+          <input type="number" id="idField">
+        <button type="button" id="editPerson" class="btn btn-primary" data-toggle="modal" data-target="#myModal2">
+          Ændre person
+        </button>
+        <div id="error" class="alert alert-danger" role="alert" style="width: 50%;margin-top:10px;"></div>
+
+        <!-- Modal -->
+        <div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+          aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="myModalLabel">Ændre person</h5>
+              </div>
+              <div class="modal-body">
+                <div class="form-group">
+                  <label for="fullName2">Fulde navn</label>
+                  <input type="text" class="form-control" id="fullName2">
+                </div>
+                <div class="form-group">
+                  <label for="email2">Email</label>
+                  <input type="text" class="form-control" id="email2">
+                </div>
+                <div class="form-group">
+                  <label for="address2">Adresse</label>
+                  <input type="text" class="form-control" id="address2">
+                </div>
+                <div class="form-group">
+                  <label for="city2">Postnummer og by</label>
+                  <input type="text" class="form-control" id="city2">
+                </div>
+                <div class="form-group">
+                  <label for="phone2">Telefonnummer</label>
+                  <input type="text" class="form-control" id="phone2">
+                </div>
+                <div class="form-group">
+                  <label for="phoneType2">Telefontype</label>
+                  <input type="text" class="form-control" id="phoneType2">
+                </div>
+                <div class="form-group">
+                  <label for="hobbyName2">Hobbynavn</label>
+                  <input type="text" class="form-control" id="hobbyName2">
+                </div>
+                <div class="form-group">
+                  <label for="hobbyDesc2">Hobbybeskrivelse</label>
+                  <input type="text" class="form-control" id="hobbyDesc2">
+                </div>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Luk</button>
+                <button type="button" id="savebtn2" class="btn btn-primary">Gem ændringer</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
       </div>
       <div class="col-lg-2"></div>
     </div>

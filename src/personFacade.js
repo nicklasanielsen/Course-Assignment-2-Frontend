@@ -25,6 +25,11 @@ function getAllPostnumbers(){
     .then(handleHttpErrors);
 }
 
+function getNumberOfHobbyPersons(hobby){
+    return fetch(URL + "xxx/" + hobby)
+    .then(handleHttpErrors);
+}
+
 function addPerson(person){
     const options = makeOptions("POST", person);
 
@@ -35,7 +40,20 @@ function addPerson(person){
 function deletePerson(id){
     const options = makeOptions("DELETE", person)
     
-    return fetch(URL + "xxx/" + id, options)
+    return fetch(URL + "id/" + id, options)
+    .then(handleHttpErrors);
+}
+
+function editPerson(person){
+    const options = makeOptions("PUT", person)
+    let id = person.id
+
+    return fetch(URL + "id/" + id, options)
+    .then(handleHttpErrors)
+}
+
+function getPersonById(id){
+    return fetch(URL + "id/" + id)
     .then(handleHttpErrors);
 }
 
@@ -45,8 +63,11 @@ const personFacade = {
     getPersonsByHobby,
     getPersonByCity,
     getAllPostnumbers,
+    getNumberOfHobbyPersons,
     addPerson,
-    deletePerson
+    deletePerson,
+    getPersonById,
+    editPerson
 }
 
 function makeOptions(method, body) {
