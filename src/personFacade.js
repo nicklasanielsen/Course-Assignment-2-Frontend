@@ -1,4 +1,4 @@
-const URL = "http://newbiz.nicklasnielsen.dk/tomcat/CA2_Backend/api/person/"
+const URL = "https://newbiz.nicklasnielsen.dk/tomcat/CA2_Backend/api/person/"
 
 function getPersonByNumber(phoneNumber){
     return fetch(URL + "phone/" + phoneNumber)
