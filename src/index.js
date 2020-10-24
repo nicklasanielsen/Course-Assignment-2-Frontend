@@ -2,6 +2,7 @@ import "./style.css"
 import "bootstrap"
 import "bootstrap/dist/css/bootstrap.css"
 import personFacade from "./personFacade.js";
+import { type } from "jquery";
 
 // ADD PERSON
 function addPerson() {
@@ -30,6 +31,9 @@ function addPerson() {
             .catch(err => {
                 console.log(err);
                 if (err.status) {
+                    if(document.getElementById("error").style.display === "none"){
+                        document.getElementById("error").style.display = "block";
+                    }
                     err.fullError.then(e => document.getElementById("error").innerHTML = e.message);
                 } else {
                     console.log("Network error");
@@ -66,6 +70,9 @@ document.getElementById("phoneForm").addEventListener("submit", function (e) {
         .catch(err => {
             console.log(err);
             if (err.status) {
+                if(document.getElementById("error").style.display === "none"){
+                    document.getElementById("error").style.display = "block";
+                }
                 err.fullError.then(e => document.getElementById("error").innerHTML = e.message);
             } else {
                 console.log("Network error");
@@ -100,6 +107,9 @@ document.getElementById("hobbyForm").addEventListener("submit", function (e) {
         .catch(err => {
             console.log(err);
             if (err.status) {
+                if(document.getElementById("error").style.display === "none"){
+                    document.getElementById("error").style.display = "block";
+                }
                 err.fullError.then(e => document.getElementById("error").innerHTML = e.message);
             } else {
                 console.log("Network error");
@@ -112,7 +122,7 @@ document.getElementById("hobbyForm").addEventListener("submit", function (e) {
 document.getElementById("hobbyNumberForm").addEventListener("submit", function (e) {
 e.preventDefault();
 let hobby = document.getElementById("hobbyNumberField").value;
-getCount(hobby);
+getCount(hobby)
 })
 
 function getCount(hobby){
@@ -123,8 +133,19 @@ function getCount(hobby){
                  if (hidden.style.display === "none") {
                  hidden.style.display = "block";
                 }
+            })
+            .catch(err => {
+                console.log(err);
+                if (err.status) {
+                    if(document.getElementById("error").style.display === "none"){
+                        document.getElementById("error").style.display = "block";
+                    }
+                    err.fullError.then(e => document.getElementById("error").innerHTML = e.message);
+                } else {
+                    console.log("Network error");
+                }
+            });
 }
-)}
 
 //SØG EFTER PERSONER UD FRA BY
 
@@ -154,6 +175,9 @@ document.getElementById("cityForm").addEventListener("submit", function (e) {
         .catch(err => {
             console.log(err);
             if (err.status) {
+                if(document.getElementById("error").style.display === "none"){
+                    document.getElementById("error").style.display = "block";
+                }
                 err.fullError.then(e => document.getElementById("error").innerHTML = e.message);
             } else {
                 console.log("Network error");
@@ -189,6 +213,9 @@ document.getElementById("zipForm").addEventListener("submit", function (e) {
         .catch(err => {
             console.log(err);
             if (err.status) {
+                if(document.getElementById("error").style.display === "none"){
+                    document.getElementById("error").style.display = "block";
+                }
                 err.fullError.then(e => document.getElementById("error").innerHTML = e.message);
             } else {
                 console.log("Network error");
@@ -214,6 +241,9 @@ document.getElementById("postNumberButton").addEventListener("click", function (
         .catch(err => {
             console.log(err);
             if (err.status) {
+                if(document.getElementById("error").style.display === "none"){
+                    document.getElementById("error").style.display = "block";
+                }
                 err.fullError.then(e => document.getElementById("error").innerHTML = e.message);
             } else {
                 console.log("Network error");
@@ -228,6 +258,9 @@ function deletePerson(id){
     .catch(err => {
         console.log(err);
         if (err.status) {
+            if(document.getElementById("error").style.display === "none"){
+                document.getElementById("error").style.display = "block";
+            }
             err.fullError.then(e => document.getElementById("error").innerHTML = e.message);
         } else {
             console.log("Network error");
@@ -240,21 +273,26 @@ function deletePerson(id){
 //Hiver Data
 function editPerson(id) {
     document.getElementById("id").value = id;
-
     personFacade.getPersonById(id)
         .then(person => {
-            document.getElementById("fullName").value = person.fullName;
-            document.getElementById("email").value = person.email;
-            document.getElementById("address").value = person.address.address;
-            document.getElementById("city").value = person.address.city;
-            document.getElementById("phone").value = person.phones.map(phone => phone.number)
-            document.getElementById("phoneType").value = person.phones.map(phone => phone.type)
-            document.getElementById("hobbyName").value = person.hobbies.map(hobby => hobby.hobbyName)
-            document.getElementById("hobbyDesc").value = person.hobbies.map(hobby => hobby.hobbyDescription)
+            console.log(person);
+            console.log(typeof person);
+            console.log(JSON.parse(JSON.stringify(person)));
+            document.getElementById("fullName").value = person[0].fullName;
+            document.getElementById("email").value = person[0].email;
+            document.getElementById("address").value = person[0].address.address;
+            document.getElementById("city").value = person[0].address.city;
+            document.getElementById("phone").value = person[0].phones.map(phone => phone.number)
+            document.getElementById("phoneType").value = person[0].phones.map(phone => phone.type)
+            document.getElementById("hobbyName").value = person[0].hobbies.map(hobby => hobby.hobbyName)
+            document.getElementById("hobbyDesc").value = person[0].hobbies.map(hobby => hobby.hobbyDescription)
         })
         .catch(err => {
             console.log(err);
             if (err.status) {
+                if(document.getElementById("error").style.display === "none"){
+                    document.getElementById("error").style.display = "block";
+                }
                 err.fullError.then(e => document.getElementById("error").innerHTML = e.message);
             } else {
                 console.log("Network error");
@@ -290,6 +328,9 @@ function updatePerson() {
         .catch(err => {
             console.log(err);
             if (err.status) {
+                if(document.getElementById("error").style.display === "none"){
+                    document.getElementById("error").style.display = "block";
+                }
                 err.fullError.then(e => document.getElementById("error").innerHTML = e.message);
             } else {
                 console.log("Network error");
