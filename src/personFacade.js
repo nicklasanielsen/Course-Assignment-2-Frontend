@@ -1,10 +1,5 @@
 const URL = "http://localhost:8080/jpareststarter/api/person/"
 
-function getAllPersons(){
-    return fetch(URL + "all")
-    .then(handleHttpErrors);
-}
-
 function getPersonByNumber(phoneNumber){
     return fetch(URL + "phone/" + phoneNumber)
     .then(handleHttpErrors);
@@ -26,12 +21,7 @@ function getPersonByZip(zip){
 }
 
 function getAllPostnumbers(){
-    return fetch(URL + "xxx")
-    .then(handleHttpErrors);
-}
-
-function getNumberOfHobbyPersons(hobby){
-    return fetch(URL + "xxx/" + hobby)
+    return fetch(URL + "city/all")
     .then(handleHttpErrors);
 }
 
@@ -63,13 +53,11 @@ function getPersonById(id){
 }
 
 const personFacade = {
-    getAllPersons,
     getPersonByNumber,
     getPersonsByHobby,
     getPersonByCity,
     getPersonByZip,
     getAllPostnumbers,
-    getNumberOfHobbyPersons,
     addPerson,
     deletePerson,
     getPersonById,

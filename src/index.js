@@ -3,33 +3,6 @@ import "bootstrap"
 import "bootstrap/dist/css/bootstrap.css"
 import personFacade from "./personFacade.js";
 
-function fetchPersons() {
-    personFacade.getAllPersons()
-        .then(data => {
-            const persons = data.all;
-            const personRows = persons.map(person => `
-        <tr>
-            <td>${person.fullName}</td>
-            <td>${person.email}</td>
-            <td>${person.address.address}</td>
-            <td>${person.address.city}</td>
-            <td>${person.phones.phoneNumber}</td>
-            <td>${person.hobbies.hobbyName}</td>
-        </tr>`
-            );
-            const personRowsAsString = personRows.join("");
-            document.getElementById("tableBody").innerHTML = personRowsAsString;
-        })
-        .catch(err => {
-            console.log(err);
-            if (err.status) {
-                err.fullError.then(e => document.getElementById("error").innerHTML = e.message);
-            } else {
-                console.log("Network error");
-            }
-        });
-}
-
 // ADD PERSON
 function addPerson() {
     document.getElementById("savebtn").addEventListener("click", function () {
@@ -64,87 +37,6 @@ function addPerson() {
             });
     })
 }
-
-//DELETE PERSON
-
-document.getElementById("deleteForm").addEventListener("submit", function (e) {
-    e.preventDefault();
-    let phoneNumber;
-    phoneNumber = document.getElementById("deleteField").value;
-    personFacade.deletePerson(phoneNumber)
-        .catch(err => {
-            console.log(err);
-            if (err.status) {
-                err.fullError.then(e => document.getElementById("error").innerHTML = e.message);
-            } else {
-                console.log("Network error");
-            }
-        });
-})
-
-//EDIT PERSON
-/*
-document.getElementById("editPerson").addEventListener("click", function () {
-    let id;
-    id = document.getElementById("idField").value
-
-    personFacade.getPersonById(id)
-    .then(person => {
-        document.getElementById("fullName2").value = person.fullName,
-        document.getElementById("email2").value = person.email,
-        document.getElementById("address2").value = person.address.address,
-        document.getElementById("city2").value = person.address.city
-        document.getElementById("phone2").value = person.phones.map(phone => phone.number)    
-        document.getElementById("phoneType2").value = person.phones.map(phone => phone.type)    
-        document.getElementById("hobbyName2").value = person.hobbies.map(hobby => hobby.hobbyName)    
-        document.getElementById("hobbyDesc2").value = person.hobbies.map(hobby => hobby.hobbyDescription)    
-    })
-    .catch(err => {
-        console.log(err);
-        if (err.status) {
-            err.fullError.then(e => document.getElementById("error").innerHTML = e.message);
-        } else {
-            console.log("Network error");
-        }
-    });
-    
-})
-
-document.getElementById("savebtn2").addEventListener("click", function (e) {
-    e.preventDefault();
-    let id = document.getElementById("ID").value;
-    let person2 = {
-        "fullName": document.getElementById("fullName").value,
-        "email": document.getElementById("email").value,
-        "address": {
-            "address": document.getElementById("address").value,
-            "city": document.getElementById("city").value
-        },
-        "phones": [
-            {
-                "number": document.getElementById("phone").value,
-                "type": document.getElementById("phoneType").value
-            }
-        ],
-        "hobbies": [
-            {
-                "hobbyName": document.getElementById("hobbyName").value,
-                "hobbyDescription": document.getElementById("hobbyDesc").value
-            }
-        ]
-    }
-    
-    personFacade.editPerson(id)
-    .catch(err => {
-        console.log(err);
-        if (err.status) {
-            err.fullError.then(e => document.getElementById("error").innerHTML = e.message);
-        } else {
-            console.log("Network error");
-        }
-    });
-})
-*/
 
 //SØG EFTER PERSON UD FRA TELEFONNUMMER
 
@@ -214,6 +106,25 @@ document.getElementById("hobbyForm").addEventListener("submit", function (e) {
             }
         });
 })
+
+//FÅ ANTAL PERSONER MED SPECIFIK HOBBY
+
+document.getElementById("hobbyNumberForm").addEventListener("submit", function (e) {
+e.preventDefault();
+let hobby = document.getElementById("hobbyNumberField").value;
+getCount(hobby);
+})
+
+function getCount(hobby){
+        personFacade.getPersonsByHobby(hobby)
+            .then(data => {
+                let hidden = document.getElementById("hobbyNumberResult");
+                 hidden.innerHTML = `Antal af personer med denne hobby : ` + data.length;
+                 if (hidden.style.display === "none") {
+                 hidden.style.display = "block";
+                }
+}
+)}
 
 //SØG EFTER PERSONER UD FRA BY
 
@@ -291,14 +202,14 @@ document.getElementById("postNumberButton").addEventListener("click", function (
     e.preventDefault();
     personFacade.getAllPostnumbers()
         .then(data => {
-            const personRows = data.map(person => `
+            const cityRows = data.map(city => `
     <tr>
-        <td>${person.address.city.zip}</td>
-        <td>${person.address.city.cityName}</td>
+        <td>${city.zip}</td>
+        <td>${city.city}</td>
     </tr>`
             );
-            const personRowsAsString = personRows.join("");
-            document.getElementById("tableBody").innerHTML = personRowsAsString;
+            const cityRowsAsString = cityRows.join("");
+            document.getElementById("tableBody2").innerHTML = cityRowsAsString;
         })
         .catch(err => {
             console.log(err);
@@ -310,60 +221,23 @@ document.getElementById("postNumberButton").addEventListener("click", function (
         });
 })
 
-//FÅ ANTAL PERSONER MED SPECIFIK HOBBY
+//DELETE PERSON
 
-document.getElementById("hobbyPersonsForm").addEventListener("submit", function (e) {
-    e.preventDefault();
-    let hobby;
-    hobby = document.getElementsByName("hobbyPersonField").value;
-    let hidden = document.getElementById("hobbyPersonResult");
-    if (hidden.style.display === "none") {
-        hidden.style.display = "block";
-    }
-    personFacade.getNumberOfHobbyPersons(hobby)
-        .catch(err => {
-            console.log(err);
-            if (err.status) {
-                err.fullError.then(e => document.getElementById("error").innerHTML = e.message);
-            } else {
-                console.log("Network error");
-            }
-        });
-})
-
-function updatePerson() {
-    const person = {
-        "id": document.getElementById("id").value,
-        "fullName": document.getElementById("fullName").value,
-        "email": document.getElementById("email").value,
-        "address": document.getElementById("address").value,
-        "city": document.getElementById("city").value,
-        "phone": document.getElementById("phone").value,
-        "phoneType": document.getElementById("phoneType").value,
-        "hobbyName": document.getElementById("hobbyName").value,
-        "hobbyDesc": document.getElementById("hobbyDesc").value
-    }
-    personFacade.editPerson(person)
-        .catch(err => {
-            console.log(err);
-            if (err.status) {
-                err.fullError.then(e => document.getElementById("error").innerHTML = e.message);
-            } else {
-                console.log("Network error");
-            }
-        });
+function deletePerson(id){
+    personFacade.deletePerson(id)
+    .catch(err => {
+        console.log(err);
+        if (err.status) {
+            err.fullError.then(e => document.getElementById("error").innerHTML = e.message);
+        } else {
+            console.log("Network error");
+        }
+    });
 }
 
-document.getElementById("savebtn").addEventListener("click", function (e) {
-    let action = document.getElementById("id").value;
+//EDIT PERSON
 
-    if (action === "0") {
-        addPerson();
-    } else {
-        updatePerson();
-    }
-})
-
+//Hiver Data
 function editPerson(id) {
     document.getElementById("id").value = id;
 
@@ -387,6 +261,51 @@ function editPerson(id) {
             }
         });
 }
+
+//Opdatere Data
+
+function updatePerson() {
+    const person = {
+        "id" : document.getElementById("id").value,
+        "fullName": document.getElementById("fullName").value,
+        "email": document.getElementById("email").value,
+        "address": {
+                "address": document.getElementById("address").value,
+                "city": document.getElementById("city").value
+        },
+        "phones": [
+            {
+                    "number": document.getElementById("phone").value,
+                    "type": document.getElementById("phoneType").value
+            }
+        ],
+        "hobbies": [
+            {
+                    "hobbyName": document.getElementById("hobbyName").value,
+                    "hobbyDescription": document.getElementById("hobbyDesc").value
+            }
+        ]
+    }
+    personFacade.editPerson(person)
+        .catch(err => {
+            console.log(err);
+            if (err.status) {
+                err.fullError.then(e => document.getElementById("error").innerHTML = e.message);
+            } else {
+                console.log("Network error");
+            }
+        });
+}
+
+document.getElementById("savebtn").addEventListener("click", function (e) {
+    let action = document.getElementById("id").value;
+
+    if (action === "0") {
+        addPerson();
+    } else {
+        updatePerson();
+    }
+})
 
 document.getElementById("tableBody").addEventListener("click", function (e) {
     let request = e.target;
