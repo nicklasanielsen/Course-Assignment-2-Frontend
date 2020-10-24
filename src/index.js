@@ -165,7 +165,7 @@ document.getElementById("cityForm").addEventListener("submit", function (e) {
         <td>${person.phones.map(phone =>
                 phone.number)}</td>
         <td>${person.hobbies.map(hobby =>
-                hobby.hobbyName)}</td>s
+                hobby.hobbyName)}</td>
         <td><a href="javascript:void(0);" name="deleteRequest" id="${person.id}">delete</a> / <a href="javascript:void(0);" name="editRequest" id="${person.id}" data-toggle="modal" data-target="#myModal">edit</a></td>
     </tr>`
             );
@@ -203,7 +203,7 @@ document.getElementById("zipForm").addEventListener("submit", function (e) {
         <td>${person.phones.map(phone =>
                 phone.number)}</td>
         <td>${person.hobbies.map(hobby =>
-                hobby.hobbyName)}</td>s
+                hobby.hobbyName)}</td>
         <td><a href="javascript:void(0);" name="deleteRequest" id="${person.id}">delete</a> / <a href="javascript:void(0);" name="editRequest" id="${person.id}" data-toggle="modal" data-target="#myModal">edit</a></td>
     </tr>`
             );
