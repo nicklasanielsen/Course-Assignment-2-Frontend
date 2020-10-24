@@ -1,4 +1,4 @@
-const URL = "http://localhost:8080/jpareststarter/api/person/"
+const URL = "http://newbiz.nicklasnielsen.dk/tomcat/CA2_Backend/api/person/"
 
 function getPersonByNumber(phoneNumber){
     return fetch(URL + "phone/" + phoneNumber)
@@ -33,7 +33,7 @@ function addPerson(person){
 }
 
 function deletePerson(id){
-    const options = makeOptions("DELETE", person)
+    const options = makeOptions("DELETE")
     
     return fetch(URL + "id/" + id, options)
     .then(handleHttpErrors);

@@ -2,7 +2,6 @@ import "./style.css"
 import "bootstrap"
 import "bootstrap/dist/css/bootstrap.css"
 import personFacade from "./personFacade.js";
-import { type } from "jquery";
 
 // ADD PERSON
 function addPerson() {
@@ -275,9 +274,6 @@ function editPerson(id) {
     document.getElementById("id").value = id;
     personFacade.getPersonById(id)
         .then(person => {
-            console.log(person);
-            console.log(typeof person);
-            console.log(JSON.parse(JSON.stringify(person)));
             document.getElementById("fullName").value = person[0].fullName;
             document.getElementById("email").value = person[0].email;
             document.getElementById("address").value = person[0].address.address;
