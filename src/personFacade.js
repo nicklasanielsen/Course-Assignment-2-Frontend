@@ -11,12 +11,17 @@ function getPersonByNumber(phoneNumber){
 }
 
 function getPersonsByHobby(hobby){
-    return fetch(URL + "xxx/" + hobby)
+    return fetch(URL + "hobby/" + hobby)
     .then(handleHttpErrors);
 }
 
 function getPersonByCity(city){
-    return fetch(URL + "xxx/" + city)
+    return fetch(URL + "city/" + city)
+    .then(handleHttpErrors);
+}
+
+function getPersonByZip(zip){
+    return fetch(URL + "zip/" + zip)
     .then(handleHttpErrors);
 }
 
@@ -46,7 +51,7 @@ function deletePerson(id){
 
 function editPerson(person){
     const options = makeOptions("PUT", person)
-    let id = person.id
+    let id = person.id;
 
     return fetch(URL + "id/" + id, options)
     .then(handleHttpErrors)
@@ -62,6 +67,7 @@ const personFacade = {
     getPersonByNumber,
     getPersonsByHobby,
     getPersonByCity,
+    getPersonByZip,
     getAllPostnumbers,
     getNumberOfHobbyPersons,
     addPerson,
